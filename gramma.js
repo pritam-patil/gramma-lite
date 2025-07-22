@@ -1,7 +1,5 @@
 const queryString = require("query-string")
 const initialConfig = require("./utils/initialConfig")
-// @ts-ignore
-const prepareMarkdown = require("./utils/prepareMarkdown").default
 
 const addWordFields = (matches) => {
   return matches.map((match) => {
@@ -48,7 +46,7 @@ const checkViaAPI = async (text, options = {}) => {
       ? {}
       : { disabledCategories: disabledRules.join(",") }
 
-  const input = options.markdown ? { data: prepareMarkdown(text) } : { text }
+  const input = { text }
 
   const postData = queryString.stringify({
     api_key: cfg.api_key,
